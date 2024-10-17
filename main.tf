@@ -26,6 +26,7 @@ resource "google_bigquery_data_transfer_config" "query_config" {
   schedule               = "every 24 hours"
   location               = var.location
   destination_dataset_id = data.google_bigquery_dataset._dataset.dataset_id
+  disabled = false
   params = {
     organization_id = var.organization_id
   }
