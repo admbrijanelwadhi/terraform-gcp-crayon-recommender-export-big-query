@@ -1,10 +1,9 @@
 # Terraform Module: BigQuery Data Transfer Configuration
 
-This Terraform module is designed to set up a BigQuery data transfer configuration within a Google Cloud project. The module creates the necessary permissions and schedules the data transfer from a specified data source to a BigQuery dataset.
+This Terraform module is designed to set up a BigQuery data transfer configuration within a Google Cloud project. The module  schedules the data transfer from a specified data source to a BigQuery dataset.
 
 ## Requirements
 
-- Terraform 0.13+
 - Google Cloud Platform (GCP) project
 - GCP Service Account with the appropriate permissions for BigQuery Data Transfer and IAM
 

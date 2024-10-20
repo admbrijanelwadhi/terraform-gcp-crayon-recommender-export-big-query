@@ -22,7 +22,7 @@ variable "dataset_id" {
 
 
 variable "location" {
-  description = "location for job should be same as Big quesy dataset"
+  description = "location for job should be same as Big quesy dataset eg. eu , us "
   type        = string
 }
 
