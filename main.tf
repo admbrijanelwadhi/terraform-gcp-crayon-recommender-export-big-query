@@ -14,10 +14,7 @@ locals {
  
 }
 
-
-
-
-resource "google_bigquery_data_transfer_config" "query_config" {
+resource "google_bigquery_data_transfer_config" "transfer_config" {
 
   display_name           = var.display_name
   data_source_id         = "6063d10f-0000-2c12-a706-f403045e6250"
