@@ -20,15 +20,15 @@ module "crayon-permission" {
   project_id = var.project_id
 
   project_roles = {
-     "roles/billing.resourceCosts.get" = [var.service_account]
+     "roles/billing.resourceCosts.get" = ["ServiceAccount:${var.service_account}"]
   }
   
   billing_roles = {
-     "roles/billing.accounts.getSpendingInformation" = [var.service_account]
+     "roles/billing.accounts.getSpendingInformation" = ["ServiceAccount:${var.service_account}"]
   }
 
   organization_roles = {
-    "roles/recommender.exporter" = [var.service_account]
+    "roles/recommender.exporter" = ["ServiceAccount:${var.service_account}"]
   }
 
 }
