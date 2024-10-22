@@ -2,10 +2,6 @@ provider "google" {
 
 }
 
-data "google_project" "project" {
-}
-
-
 locals {
   current_time_utc = timestamp()                 # Gets the current time in UTC
  
