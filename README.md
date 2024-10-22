@@ -11,12 +11,13 @@ This Terraform module is designed to set up a BigQuery data transfer configurati
 
 ```
 module "bigquery_transfer" {
-  source            = "./path-to-your-module"
-  project_id        = "your-gcp-project-id"
-  dataset_id        = "your-bigquery-dataset-id"
-  display_name      = "Your Transfer Config Display Name"
-  organization_id   = "Your organization ID"  #
-  service_account   = "pyour-service-account-email@your-project.iam.gserviceaccount.com"
-  location          = "EU"  # Location of the dataset (e.g., US, EU)
+  source               = "./path-to-your-module"
+  project_id           = "your-gcp-project-id"
+  dataset_id           = "your-bigquery-dataset-id"
+  display_name         = "Your Transfer Config Display Name"
+  organization_id      = "Your organization ID"  #
+  service_account      = "pyour-service-account-email@your-project.iam.gserviceaccount.com"
+  location             = "EU"  # Location of the dataset (e.g., US, EU)
+  billing_account_id   = "billing account id"
 }
 
