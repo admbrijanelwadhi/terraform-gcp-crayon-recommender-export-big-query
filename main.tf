@@ -1,6 +1,3 @@
-provider "google" {
-
-}
 
 locals {
   current_time_utc = timestamp()                 # Gets the current time in UTC
