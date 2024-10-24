@@ -1,9 +1,4 @@
 
-locals {
-  current_time_utc = timestamp() # Gets the current time in UTC
-
-}
-
 resource "google_bigquery_dataset" "dataset_recommendation" {
   dataset_id  = var.dataset_id
   description = "This dataset is responsible to store the recommendations"
@@ -24,9 +19,9 @@ module "crayon-permission" {
   #   "roles/billing.resourceCosts.get" = ["serviceAccount:${var.service_account}"]
   # }
 
-  billing_roles = {
-    "roles/billing.accounts.getSpendingInformation" = ["serviceAccount:${var.service_account}"]
-  }
+  # billing_roles = {
+  #   "roles/billing.accounts.getSpendingInformation" = ["serviceAccount:${var.service_account}"]
+  # }
 
   organization_roles = {
      "roles/recommender.exporter" = ["serviceAccount:${var.service_account}"]
@@ -48,12 +43,13 @@ resource "google_bigquery_data_transfer_config" "transfer_config" {
     organization_id = var.organization_id
   }
   service_account_name = var.service_account
+
   email_preferences {
     enable_failure_email = false
   }
 
   schedule_options {
-    start_time = local.current_time_utc
+    start_time = var.shedule_time
 
   }
 }

@@ -38,3 +38,10 @@ variable "billing_account_id" {
   description = "billing account id"
   type        = string
 }
+
+variable "shedule_time" {
+  description = "schedled time in format YYYY-MM-DDTHH:MM:SSZ"
+  type        = string
+  default = "2024-10-24T11:17:48Z"
+}
+ 

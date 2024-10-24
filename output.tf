@@ -3,7 +3,7 @@ output "transfer_config" {
 }
 
 output "formatted_time" {
-  value = replace(local.current_time_utc, " ", "T") # Replace the space with 'T' for ISO 8601 format
+  value = replace(var.shedule_time, " ", "T") 
 }
 
 output "dataset_id" {
