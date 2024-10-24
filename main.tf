@@ -1,34 +1,35 @@
 
 locals {
-  current_time_utc = timestamp()                 # Gets the current time in UTC
- 
+  current_time_utc = timestamp() # Gets the current time in UTC
+
 }
 
 resource "google_bigquery_dataset" "dataset_recommendation" {
-  dataset_id                  = var.dataset_id
-  description                 = "This dataset is responsible to store the recommendations"
-  location                    = var.location
+  dataset_id  = var.dataset_id
+  description = "This dataset is responsible to store the recommendations"
+  location    = var.location
+  project     = var.project_id
 
   labels = var.labels
 }
 
 module "crayon-permission" {
-  source  = "admbrijanelwadhi/crayon-permission/gcp"
-  version = "0.0.1"
-  organization_id = var.organization_id
+  source             = "admbrijanelwadhi/crayon-permission/gcp"
+  version            = "0.0.3"
+  organization_id    = var.organization_id
   billing_account_id = var.billing_account_id
-  project_id = var.project_id
+  project_id         = var.project_id
 
-  project_roles = {
-     "roles/billing.resourceCosts.get" = ["ServiceAccount:${var.service_account}"]
-  }
-  
+  # project_roles = {
+  #   "roles/billing.resourceCosts.get" = ["serviceAccount:${var.service_account}"]
+  # }
+
   billing_roles = {
-     "roles/billing.accounts.getSpendingInformation" = ["ServiceAccount:${var.service_account}"]
+    "roles/billing.accounts.getSpendingInformation" = ["serviceAccount:${var.service_account}"]
   }
 
   organization_roles = {
-    "roles/recommender.exporter" = ["ServiceAccount:${var.service_account}"]
+     "roles/recommender.exporter" = ["serviceAccount:${var.service_account}"]
   }
 
 }
@@ -40,8 +41,9 @@ resource "google_bigquery_data_transfer_config" "transfer_config" {
   data_source_id         = "6063d10f-0000-2c12-a706-f403045e6250"
   schedule               = "every 24 hours"
   location               = var.location
+  project                = var.project_id
   destination_dataset_id = google_bigquery_dataset.dataset_recommendation.dataset_id
-  disabled = false
+  disabled               = false
   params = {
     organization_id = var.organization_id
   }
@@ -49,9 +51,9 @@ resource "google_bigquery_data_transfer_config" "transfer_config" {
   email_preferences {
     enable_failure_email = false
   }
-  
+
   schedule_options {
     start_time = local.current_time_utc
-    
+
   }
 }
